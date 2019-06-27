@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="planets api test suite">
+	<parameter name="base-url" value="https://www.starwars.com" />
+	<test name="SW Tests">
+		<!-- <packages>
+			<package name="com.company.ui.test" />
+		</packages> -->
+		<classes>
+			<class name="com.company.ui.test.FilmsPageTest" />
+		</classes>
+	</test>
+</suite>
+
