@@ -12,8 +12,12 @@ public class HomePage extends DriverManager {
 	
 	private static final String SW_LOGO_ID = "nav-sw-logo-bar";
 	private static final String NAV_BAR_FILMS_href = "/films";
+	private static final String NAV_BAR_VIDEO_href = "/video";
+	private static final String LOGIN_CLASS = "disid-login log-in-out";
+	private static final String SIGN_UP_CLASS = "disid-signup log-in-out";
+	private static final String COPYRIGHT_ID = "copyright";
 	
-	public void isPageLoaded() {
+	public void isPageDisplayed() {
 		driver.findElement(By.id(SW_LOGO_ID)).isDisplayed();
 		LOGGER.debug("home page loaded");
 	}
@@ -21,6 +25,26 @@ public class HomePage extends DriverManager {
 	public void navigateToFilms() {
 		driver.findElement(By.xpath("//a[@href='"+ NAV_BAR_FILMS_href + "']")).click();
 		LOGGER.debug("selected films option from the navbar");
+	}
+	
+	public void navigateToVideo() {
+		driver.findElement(By.xpath("//a[@href='"+ NAV_BAR_VIDEO_href + "']")).click();
+		LOGGER.debug("selected films option from the navbar");
+	}
+	
+	
+	public void navigateToLogin() {
+		driver.findElement(By.className(LOGIN_CLASS)).click();
+		LOGGER.debug("login option selected");
+	}
+	
+	public void navigateToSignUp() {
+		driver.findElement(By.className(SIGN_UP_CLASS)).click();
+		LOGGER.debug("sign up option selected");
+	}
+	
+	public String getCopyrightText() {
+		return driver.findElement(By.id(COPYRIGHT_ID)).getText();
 	}
 
 }

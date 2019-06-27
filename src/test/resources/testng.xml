@@ -4,12 +4,12 @@
 <suite name="planets api test suite">
 	<parameter name="base-url" value="https://www.starwars.com" />
 	<test name="SW Tests">
-		<!-- <packages>
+		<packages>
 			<package name="com.company.ui.test" />
-		</packages> -->
-		<classes>
-			<class name="com.company.ui.test.FilmsPageTest" />
-		</classes>
+		</packages>
+		<!-- <classes>
+			<class name="com.company.ui.test.HomePageTest" />
+		</classes> -->
 	</test>
 </suite>
 

@@ -19,17 +19,22 @@ public class FilmsPageTest {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static String filmUrl;
+	
 	private static String homeUrl;
 
 	FilmsPage filmsPage = new FilmsPage();
+	
 	HomePage homePage = new HomePage();
 
 	private static String pageTitle = "Star Wars Movies";
 
+	/**
+	 * Verify navigation from the home screen
+	 */
 	@Test
-	public void navigateFromHome() {
+	public void navigateFromHomeTest() {
 		DriverManager.getPage(homeUrl);
-		homePage.isPageLoaded();
+		homePage.isPageDisplayed();
 		homePage.navigateToFilms();
 		filmsPage.isPageDisplayed();
 		String filmsPageTitle = DriverManager.getPageTitle().toLowerCase();
@@ -37,6 +42,9 @@ public class FilmsPageTest {
 		Assert.assertTrue(filmsPageTitle.contains(pageTitle.toLowerCase()));
 	}
 
+	/**
+	 * Verify Movie selection from dropdown
+	 */
 	@Test
 	public void movieSelectionFromDropdownTest() {
 		filmsPage.selectFilmDropDownOption();
@@ -47,6 +55,9 @@ public class FilmsPageTest {
 				"incorrect movie info displayed");
 	}
 
+	/**
+	 * Verify default file selector
+	 */
 	@Test
 	public void defaultFileSelectorTest() {
 		String defaultFilmSelector = filmsPage.getDefaultFileSelector().toLowerCase();
@@ -54,6 +65,9 @@ public class FilmsPageTest {
 		Assert.assertEquals("see all", defaultFilmSelector, "incorrect default film selector");
 	}
 	
+	/**
+	 * Verify movie count test
+	 */
 	@Test
 	public void movieCountTest() {
 		int numFilmsFromSelector = filmsPage.getListOfMoviesFromSelector().size();
@@ -62,12 +76,20 @@ public class FilmsPageTest {
 				"mismatch between number of films displayed vs number of films in the selector");
 	}
 
+	/**
+	 * Before test.
+	 */
 	@BeforeMethod
 	public void beforeTest() {
 		DriverManager.getPage(filmUrl);
 		filmsPage.isPageDisplayed();
 	}
 
+	/**
+	 * Before class.
+	 *
+	 * @param baseUrl the base url
+	 */
 	@BeforeClass
 	@Parameters({ "base-url" })
 	public void beforeClass(String baseUrl) {
@@ -78,9 +100,12 @@ public class FilmsPageTest {
 		LOGGER.info("home url: [{}]", baseUrl);
 
 		DriverManager.init();
-		DriverManager.maximizewindow();
+		DriverManager.maximizeWindow();
 	}
 
+	/**
+	 * After class.
+	 */
 	@AfterClass
 	public void afterClass() {
 		DriverManager.quit();
